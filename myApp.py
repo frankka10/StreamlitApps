@@ -6,7 +6,7 @@ def load_data(data):
   return pd.read_excel(data)
 
 def main():
-  data = load_data('Produits_dopants_20160317.xlsx')
+  data = load_data('https://github.com/frankka10/StreamlitApps/blob/main/Produits_dopants_20160317.xlsx')
   st.title("Drop products")
   st.dataframe(data.head(10))
   
