@@ -80,9 +80,9 @@ def main():
     'Select a class among the following ones :', data['Classe'].unique())
   
   if option:
-    col1, col2 = st.columns(2)
+    col1, col2, col3, col4 = st.columns(4)
     df = status_proportion_per_class(option)
-    with col2:
+    with col4:
       st.dataframe(df)
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
     with col1:
