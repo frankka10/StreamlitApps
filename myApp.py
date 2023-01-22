@@ -31,7 +31,7 @@ def process_proportion_per_class(classe):
   l = []
   df = {}
   for process in data['Procédure'].unique():
-    l.append(len(data[(data['Classe'] == classe) & (data['Statut'] == process)]['DenomSpe'].unique()))
+    l.append(len(data[(data['Classe'] == classe) & (data['Procédure'] == process)]['DenomSpe'].unique()))
   df['Process'] = data['Procédure'].unique()
   df['Proportion'] = np.array(l)
   return pd.DataFrame(df)
