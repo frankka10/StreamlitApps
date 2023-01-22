@@ -76,11 +76,10 @@ def main():
   st.subheader("Proportion of statut")
   st.write("About the statutes, they concern the consumption of these"
            "doping substances during and outside competition")
-  classe = st.selectbox(
-    'Select a class among the following ones :',
-    data['Classe'].unique())
-  if classe:
-    df = status_proportion_per_class(classe)
+  option = st.selectbox(
+    'Select a class among the following ones :', data['Classe'].unique())
+  if option:
+    df = status_proportion_per_class(option)
     st.dataframe(df)
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
     st.plotly_chart(fig)  
