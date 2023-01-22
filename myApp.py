@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
+import plotly.express as px
 
 data = pd.read_excel("Produits_dopants_20160317.xlsx")
 
@@ -15,7 +16,7 @@ def substances_derivates_per_class():
   df['Number of Substances'] = np.array(l)
   df['Number of DenomSpe'] = np.array(l2)
   df = pd.DataFrame(df)
-  return pd.DataFrame(df.set_index('Classe'))
+  return pd.DataFrame(df)
 
 
 
@@ -46,10 +47,23 @@ def main():
       with tabs[i]:
         st.write("There are {} unique elements in this column".format(len(data[selected_columns[i]].unique())))
   
-  # Bar chart
+  
+  # Substances and derivates per classes
   st.subheader("Overview of the quantity of substances and devirates per classes")
-  chart_data = substances_derivates_per_class()
-  st.bar_chart(chart_data)  
+  df = substances_derivates_per_class()
+  st.bar_chart(df.set_index('Classe'))  
+  with st.expander("Explanation"):
+    st.write("This figure describes on the same graph the number of substances per class "
+             "and the number of deviations of substances per class found in our dataset")
+  
+  # Classes with the n-highest number of substances
+  st.subheader("Overview of the quantity of substances and devirates per classes")
+  fig = px.pie(df, values="Number of Substances", names="Classe", title="aertr")
+  st.plotly_chart(df)  
+  with st.expander("Explanation"):
+    st.write("This graph describes the number of substances per class and"
+             "the number of deviations of substances per class found in our dataset")
+  
   
 if __name__ == '__main__':
   main()
