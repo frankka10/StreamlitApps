@@ -2,8 +2,20 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
+def substances_derivates_per_class():
+  df = {}
+  l = []
+  l2 = []
+  for classe in data['Classe'].unique():
+    l.append(len(data[data['Classe'] == classe]['Substance'].unique()))
+    l2.append(len(data[data['Classe'] == classe]['DenomSpe'].unique()))
+  df['Classe'] = data['Classe'].unique()
+  df['Number of Substances'] = np.array(l)
+  df['Number of DenomSpe'] = np.array(l2)
+  return pd.DataFrame(df)
 
-  
+
+
 def main():
   
   # Display the header
@@ -32,10 +44,10 @@ def main():
       with tabs[i]:
         st.write("There are {} unique elements in this column".format(len(data[selected_columns[i]].unique())))
 
+  st.subheader("Overview of the quantity of substances and devirates per classes")
+  chart_data = substances_derivates_per_class()
+  st.bar_chart(chart_data)  
   
-    
-    
-    
 if __name__ == '__main__':
   main()
 
