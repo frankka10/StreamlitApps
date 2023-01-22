@@ -27,6 +27,15 @@ def status_proportion_per_class(classe):
   df['Proportion'] = np.array(l)
   return pd.DataFrame(df)
 
+def process_proportion_per_class(classe):
+  l = []
+  df = {}
+  for process in data['Procédure'].unique():
+    l.append(len(data[(data['Classe'] == classe) & (data['Statut'] == process)]['DenomSpe'].unique()))
+  df['Process'] = data['Procédure'].unique()
+  df['Proportion'] = np.array(l)
+  return pd.DataFrame(df)
+
 
 def main():
   
@@ -84,6 +93,22 @@ def main():
     st.dataframe(df)
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
     st.plotly_chart(fig)  
+    with st.expander("Explanation"):
+      st.write("This figure describes on the same graph the number of substances per class "
+               "and the number of deviations of substances per class found in our dataset")
+      
+   # Proportion of process
+  st.subheader("Proportion of acquisition process")
+  st.write("About the acquisition process, they concern the acquisition of these"
+           "doping substances, whether you may have an authorization or not.")
+  option2 = st.selectbox(
+    'Select a class among the following ones :', data['Classe'].unique())
+  
+  if option2:
+    df2 = status_proportion_per_class(option2)
+    st.dataframe(df2)
+    fig2 = px.pie(df2, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
+    st.plotly_chart(fig2)  
     with st.expander("Explanation"):
       st.write("This figure describes on the same graph the number of substances per class "
                "and the number of deviations of substances per class found in our dataset")
