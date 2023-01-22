@@ -22,7 +22,7 @@ def status_proportion_per_class(classe):
   l = []
   df = {}
   for status in data['Statut'].unique():
-    l.append(len(data[(data['Classe'] == classe) & (data['Statut'] == status)]['Substance'].unique()))
+    l.append(len(data[(data['Classe'] == classe) & (data['Statut'] == status)]['DenomSpe'].unique()))
   df['Statut'] = data['Statut'].unique()
   df['Proportion'] = np.array(l)
   return pd.DataFrame(df)
