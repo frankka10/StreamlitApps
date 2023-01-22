@@ -102,7 +102,7 @@ def main():
   st.write("About the acquisition process, they concern the acquisition of these"
            "doping substances, whether you may have an authorization or not.")
   option2 = st.selectbox(
-    'Select a class among the following ones :', data['Classe'].unique())
+    'Select a class among the following ones :', data['Classe'].unique(), key='option2')
   
   if option2:
     df2 = process_proportion_per_class(option2)
