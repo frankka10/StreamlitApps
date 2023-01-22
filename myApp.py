@@ -58,12 +58,11 @@ def main():
   
   # Classes with the n-highest number of substances
   st.subheader("Overview of the quantity of substances and devirates per classes")
-  fig = px.pie(df.head(10), values="Number of Substances", title="aertr")
-  st.plotly_chart(fig, use_container_width=True)  
+  df = substances_derivates_per_class()
+  st.area_chart(df.set_index('Classe'))  
   with st.expander("Explanation"):
-    st.write("This graph describes the number of substances per class and"
-             "the number of deviations of substances per class found in our dataset")
-  
+    st.write("This figure describes on the same graph the number of substances per class "
+             "and the number of deviations of substances per class found in our dataset")
   
 if __name__ == '__main__':
   main()
