@@ -22,14 +22,14 @@ def main():
   #with st.expander("Classes"):
    # st.write()
   
-  selected_columns = st.multiselect("Select the columns you want to see the length ", data.columns)
+  selected_columns = st.multiselect("Select the columns you want to see the length ", data.columns, default = data.columns[7])
   tabs = []
   for i in range(len(selected_columns)):
     tabs.append("tab{}".format(i))
   tabs = st.tabs(selected_columns)
   for i in range(len(tabs)):
     with tabs[i]:
-      st.write("There are {} unique elements in this column".format(len(data[data.columns[i]].unique())))
+      st.write("There are {} unique elements in this column".format(len(data[selected_columns[i]].unique())))
   
   #tab1, tab2, tab3, tab4 = st.tabs([data.columns[7],data.columns[0],data.columns[1],data.columns[2]])
   #with tab1: 
