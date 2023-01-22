@@ -22,20 +22,26 @@ def main():
   #with st.expander("Classes"):
    # st.write()
   
-  tab1, tab2, tab3, tab4 = st.tabs([data.columns[7],data.columns[0],data.columns[1],data.columns[2]])
-  with tab1: 
-    st.write("There are {} classes".format(len(data[data.columns[7]].unique())))
-  with tab2: 
-    st.write("There are {} substances".format(len(data[data.columns[0]].unique())))
-  with tab3:
-    st.write("There are {} devirates".format(len(data[data.columns[1]].unique())))
-  with tab4:
-    st.write("There are {} paths of consumption".format(len(data[data.columns[2]].unique())))
+  selected_columns = st.multiselect("Select the columns you want to see the length ", data.columns)
+  tabs = []
+  for i in range(len(selected_columns)):
+    tabs.append("tab{}".format(i))
+  tabs = st.tabs(selected_columns)
+  for i in range(len(tabs)):
+    with tabs[i]:
+      st.write("There are {} unique elements in this column".format(len(data[data.columns[i]].unique())))
   
-  my_choices = data.columns
-  selected_columns = st.multiselect("Select the columns you want to see the length ", my_choices)
-  for column in selected_columns:
-    st.write(column)
+  #tab1, tab2, tab3, tab4 = st.tabs([data.columns[7],data.columns[0],data.columns[1],data.columns[2]])
+  #with tab1: 
+   # st.write("There are {} classes".format(len(data[data.columns[7]].unique())))
+  #with tab2: 
+   # st.write("There are {} substances".format(len(data[data.columns[0]].unique())))
+  #with tab3:
+   # st.write("There are {} devirates".format(len(data[data.columns[1]].unique())))
+  #with tab4:
+   # st.write("There are {} paths of consumption".format(len(data[data.columns[2]].unique())))
+  
+  
     
     
     
