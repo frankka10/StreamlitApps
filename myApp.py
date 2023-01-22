@@ -14,6 +14,7 @@ def substances_derivates_per_class():
   df['Classe'] = data['Classe'].unique()
   df['Number of Substances'] = np.array(l)
   df['Number of DenomSpe'] = np.array(l2)
+  df = pd.DataFrame(df)
   return pd.DataFrame(df.set_index('Classe'))
 
 
