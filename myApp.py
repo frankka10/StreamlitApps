@@ -79,13 +79,14 @@ def main():
   classe = st.selectbox(
     'Select a class among the following ones :',
     data['Classe'].unique())
-  df = status_proportion_per_class(classe)
-  fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
-  st.plotly_chart(fig)  
-  with st.expander("Explanation"):
-    st.write("This figure describes on the same graph the number of substances per class "
-             "and the number of deviations of substances per class found in our dataset")
-    
+  if classe:
+    df = status_proportion_per_class(classe)
+    fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
+    st.plotly_chart(fig)  
+    with st.expander("Explanation"):
+      st.write("This figure describes on the same graph the number of substances per class "
+               "and the number of deviations of substances per class found in our dataset")
+  
   
 if __name__ == '__main__':
   main()
