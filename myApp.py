@@ -8,7 +8,6 @@ def main():
   
   # Display the header
   st.title("Doping Substances Analysis")
-  st.subheader("Introduction")
   
   with st.beta_expander(st.subheader("Introduction")):
     st.text("This project presents a statistical analysis of data on doping products" 
