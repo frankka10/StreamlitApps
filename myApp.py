@@ -20,7 +20,7 @@ def substances_derivates_per_class():
 
 def status_proportion_per_class(classe):
   l = []
-  d = {}
+  df = {}
   for status in data['Statut'].unique():
     l.append(len(data[(data['Classe'] == classe) & (data['Statut'] == status)]['Substance'].unique()))
   df['Statut'] = data['Statut'].unique()
