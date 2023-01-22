@@ -10,7 +10,7 @@ def main():
   st.title("Doping Substances Analysis")
   
   with st.expander("Introduction"):
-    st.text("This project presents a statistical analysis of data on doping products" 
+    st.write("This project presents a statistical analysis of data on doping products" 
             "recorded in March 2016 on the website of the French Ministry of Health ")
   
   # Display the dataframe
