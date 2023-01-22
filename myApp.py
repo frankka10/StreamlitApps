@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
+data = pd.read_excel("Produits_dopants_20160317.xlsx")
+
 def substances_derivates_per_class():
   df = {}
   l = []
@@ -28,7 +30,6 @@ def main():
   # Display the dataframe
   st.subheader("What does our dataset look like?")
   st.write("Our dataset contains 2238 rows and 8 columns(features)")
-  data = pd.read_excel("Produits_dopants_20160317.xlsx")
   st.dataframe(data)
   st.write("There are the repartitions of the most relevant columns :")
   #with st.expander("Classes"):
