@@ -81,6 +81,7 @@ def main():
     data['Classe'].unique())
   if classe:
     df = status_proportion_per_class(classe)
+    st.dataframe(df)
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
     st.plotly_chart(fig)  
     with st.expander("Explanation"):
