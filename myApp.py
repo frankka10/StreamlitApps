@@ -107,7 +107,7 @@ def main():
   if option2:
     df2 = process_proportion_per_class(option2)
     st.dataframe(df2)
-    fig2 = px.pie(df2, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
+    fig2 = px.pie(df2, values = 'Proportion', names = 'Process', title = 'Proportion of acquisition process')
     st.plotly_chart(fig2)  
     with st.expander("Explanation"):
       st.write("This figure describes on the same graph the number of substances per class "
