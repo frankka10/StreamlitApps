@@ -47,7 +47,7 @@ def main():
 
   st.subheader("Overview of the quantity of substances and devirates per classes")
   chart_data = substances_derivates_per_class()
-  st.bar_chart(chart_data)  
+  st.bar_chart(chart_data[["Number of Substances","Number of DenomSpe"]])  
   
 if __name__ == '__main__':
   main()
