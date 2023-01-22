@@ -18,6 +18,14 @@ def substances_derivates_per_class():
   df = pd.DataFrame(df)
   return pd.DataFrame(df)
 
+def status_proportion_per_class(classe):
+  l = []
+  d = {}
+  for status in data['Statut'].unique():
+    l.append(len(data[(data['Classe'] == classe) & (data['Statut'] == status)]['Substance'].unique()))
+  df['Statut'] = data['Statut'].unique()
+  df['Proportion'] = np.array(l)
+  return pd.DataFrame(df)
 
 
 def main():
@@ -63,6 +71,21 @@ def main():
   with st.expander("Explanation"):
     st.write("This figure describes on the same graph the number of substances per class "
              "and the number of deviations of substances per class found in our dataset")
+    
+  # Proportion of statut 
+  st.subheader("Proportion of statut")
+  st.write("About the statutes, they concern the consumption of these"
+           "doping substances during and outside competition")
+  classe = st.selectbox(
+    'Select a class among the following ones :',
+    data['Classe'].unique())
+  df = status_proportion_per_class(classe)
+  fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
+  st.plotly_chart(fig)  
+  with st.expander("Explanation"):
+    st.write("This figure describes on the same graph the number of substances per class "
+             "and the number of deviations of substances per class found in our dataset")
+    
   
 if __name__ == '__main__':
   main()
