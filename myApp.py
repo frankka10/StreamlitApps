@@ -78,11 +78,15 @@ def main():
            "doping substances during and outside competition")
   option = st.selectbox(
     'Select a class among the following ones :', data['Classe'].unique())
+  
   if option:
+    col1, col2 = st.columns(2)
     df = status_proportion_per_class(option)
-    st.dataframe(df)
+    with col2:
+      st.dataframe(df)
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
-    st.plotly_chart(fig)  
+    with col1:
+      st.plotly_chart(fig)  
     with st.expander("Explanation"):
       st.write("This figure describes on the same graph the number of substances per class "
                "and the number of deviations of substances per class found in our dataset")
