@@ -14,6 +14,7 @@ def substances_derivates_per_class():
   df['Classe'] = data['Classe'].unique()
   df['Number of Substances'] = np.array(l)
   df['Number of DenomSpe'] = np.array(l2)
+  df.set_index('Classe')
   return pd.DataFrame(df)
 
 
@@ -48,7 +49,7 @@ def main():
   # Bar chart
   st.subheader("Overview of the quantity of substances and devirates per classes")
   chart_data = substances_derivates_per_class()
-  st.bar_chart(chart_data[["Number of Substances","Number of DenomSpe"]], x = chart_data["Classe"], y = chart_data[["Number of Substances","Number of DenomSpe"]])  
+  st.bar_chart(chart_data)  
   
 if __name__ == '__main__':
   main()
