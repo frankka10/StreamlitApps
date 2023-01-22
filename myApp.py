@@ -80,13 +80,10 @@ def main():
     'Select a class among the following ones :', data['Classe'].unique())
   
   if option:
-    col1, col2, col3, col4 = st.columns(4)
     df = status_proportion_per_class(option)
-    with col4:
-      st.dataframe(df)
+    st.dataframe(df)
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
-    with col1:
-      st.plotly_chart(fig)  
+    st.plotly_chart(fig)  
     with st.expander("Explanation"):
       st.write("This figure describes on the same graph the number of substances per class "
                "and the number of deviations of substances per class found in our dataset")
