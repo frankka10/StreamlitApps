@@ -105,7 +105,7 @@ def main():
     'Select a class among the following ones :', data['Classe'].unique())
   
   if option2:
-    df2 = status_proportion_per_class(option2)
+    df2 = process_proportion_per_class(option2)
     st.dataframe(df2)
     fig2 = px.pie(df2, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
     st.plotly_chart(fig2)  
