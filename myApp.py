@@ -32,7 +32,13 @@ def main():
   with tab4:
     st.write("There are {} paths of consumption".format(len(data[data.columns[2]].unique())))
   
-  
+  my_choices = data.columns
+  selected_columns = st.multiselect("Select the columns you want to see the length ", my_choices)
+  for column in selected_columns:
+    st.write(column)
+    
+    
+    
 if __name__ == '__main__':
   main()
 
