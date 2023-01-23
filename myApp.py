@@ -153,9 +153,10 @@ def main():
   with col5:
     substance1 = st.selectbox(
     'Select a substance of the chosen class', data[data['Classe'] == classe1]['Substance'].unique(), key='sub')
-  with col6:
-    derivate = st.selectbox(
-    'Select a derivate of the substance', data[(data['Classe'] == classe1) & (data['Substance'] == substance1)]['DenomSpe'].unique(), key='der')
+  if substance1:
+    with col6:
+      derivate = st.selectbox(
+      'Select a derivate of the substance', data[(data['Classe'] == classe1) & (data['Substance'] == substance1)]['DenomSpe'].unique(), key='der')
   
   col7, col8 = st.columns(2)
   with col7:
