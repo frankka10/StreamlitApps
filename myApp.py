@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
+import matplotlib.pyplot as plt
+import matplotlib
+matpltlib.use('Agg')
 
 data = pd.read_excel("Produits_dopants_20160317.xlsx")
 
@@ -36,6 +39,10 @@ def process_proportion_per_class(classe):
   df['Proportion'] = np.array(l)
   return pd.DataFrame(df)
 
+def most_substances_classes(n):
+  df = substances_derivates_per_class()
+  df = df.sort_values(by='Number of Substances', ascending=False)
+  return df.head(n)
 
 def main():
   
@@ -51,14 +58,12 @@ def main():
   st.write("Our dataset contains 2238 rows and 8 columns(features)")
   st.dataframe(data)
   st.write("There are the repartitions of the most relevant columns :")
-  #with st.expander("Classes"):
-   # st.write()
   
   selected_columns = st.multiselect("Select the columns you want to see the length ", data.columns, default = data.columns[7])
   if selected_columns:
     tabs = []
     for i in range(len(selected_columns)):
-      tabs.append("tab{}".format(i))
+      tabs.append("tab_{}".format(i))
     tabs = st.tabs(selected_columns)
     for i in range(len(tabs)):
       with tabs[i]:
@@ -73,13 +78,28 @@ def main():
     st.write("This figure describes on the same graph the number of substances per class "
              "and the number of deviations of substances per class found in our dataset")
   
-  # Classes with the n-highest number of substances
+  
   st.subheader("Overview of the quantity of substances and devirates per classes")
   df = substances_derivates_per_class()
   st.area_chart(df.set_index('Classe'))  
   with st.expander("Explanation"):
     st.write("This figure describes on the same graph the number of substances per class "
              "and the number of deviations of substances per class found in our dataset")
+  
+  # Classes with the n-highest number of substances
+  tab1, tab2 = st.tabs(['K- Classes with the highest number of Substances','K- Classes with the highest number of Derivates'])
+  with tab1:
+    k1 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10)
+    df = most_substances_classes(k1)
+    fig, ax = plt.subplots()
+    ax.stem(df['Classe'], df['Number of Substances'])
+    st.pyplot(fig)
+  with tab2:
+    k2 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10)
+    df = most_substances_classes(k2)
+    fig2, ax = plt.subplots()
+    ax.stem(df['Classe'], df['Number of Substances'])
+    st.pyplot(fig2)
     
   # Proportion of statut 
   st.subheader("Proportion of statut")
@@ -112,6 +132,7 @@ def main():
     with st.expander("Explanation"):
       st.write("This figure describes on the same graph the number of substances per class "
                "and the number of deviations of substances per class found in our dataset")
+  
   
   
 if __name__ == '__main__':
