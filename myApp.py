@@ -103,7 +103,7 @@ def main():
     k2 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10, key='k2')
     df = most_derivates_classes(k2)
     fig2, ax = plt.subplots()
-    ax.scatter(df['Number of Substances'], df['Classe'])
+    ax.scatter(df['Number of DenomSpe'], df['Classe'])
     st.pyplot(fig2)
     
   # Proportion of statut 
