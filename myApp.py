@@ -4,7 +4,7 @@ import streamlit as st
 import plotly.express as px
 import matplotlib.pyplot as plt
 import matplotlib
-matpltlib.use('Agg')
+matplotlib.use('Agg')
 
 data = pd.read_excel("Produits_dopants_20160317.xlsx")
 
