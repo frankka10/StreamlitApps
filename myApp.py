@@ -30,13 +30,13 @@ def status_proportion_per_class(classe):
   df['Proportion'] = np.array(l)
   return pd.DataFrame(df)
 
-def process_proportion_per_class(classe):
-  l = []
+def path_proportion_per_class(classe, substance):
   df = {}
-  for process in data['Procédure'].unique():
-    l.append(len(data[(data['Classe'] == classe) & (data['Procédure'] == process)]['DenomSpe'].unique()))
-  df['Process'] = data['Procédure'].unique()
-  df['Proportion'] = np.array(l)
+  l = []
+  for voie in data[(data['Classe'] == classe) & (data['Substance'] == substance)]['Voie'].unique():
+    l.append(len(data[(data['Classe'] == classe) & (data['Substance'] == substance) & (data['Voie'] == voie)]))
+  df['Voie'] = data[(data['Classe'] == classe) & (data['Substance'] == substance)]['Voie'].unique()
+  df['Repartition'] = np.array(l)
   return pd.DataFrame(df)
 
 def most_substances_classes(n):
@@ -122,23 +122,31 @@ def main():
       st.write("This figure describes on the same graph the number of substances per class "
                "and the number of deviations of substances per class found in our dataset")
       
-   # Proportion of process
-  st.subheader("Proportion of acquisition process")
+   # Proportion of paths per substance
+  st.subheader("Proportion of paths consumption per class")
   st.write("About the acquisition process, they concern the acquisition of these"
            "doping substances, whether you may have an authorization or not.")
-  option2 = st.selectbox(
-    'Select a class among the following ones :', data['Classe'].unique(), key='option2')
   
-  if option2:
-    df2 = process_proportion_per_class(option2)
+  col1, col2 = st.columns(['Class', 'Substance of the chosen class'])
+  with col1:
+    classe = st.selectbox(
+    'Select a class among the list :', data['Classe'].unique(), key='option1')
+  with col2:
+    substance = st.selectbox(
+    'Select a substance of the chosen class :', data[data['Classe'] == option1]['Substance'].unique(), key='option2')
+  
+  if substance:
+    df2 = path_proportion_per_class(classe, substance)
     st.dataframe(df2)
-    fig2 = px.pie(df2, values = 'Proportion', names = 'Process', title = 'Proportion of acquisition process')
+    fig2 = px.pie(df2, values = 'Repartition', names = 'Voie', title = 'Proportion of path consumption ')
     st.plotly_chart(fig2)  
     with st.expander("Explanation"):
       st.write("This figure describes on the same graph the number of substances per class "
                "and the number of deviations of substances per class found in our dataset")
   
-  
+  # Informations about the use of the derivates
+  #st.subheader('What is the specific information about their use ?')
+  #col1, col2, col3, col4 = st.columns(3)
   
 if __name__ == '__main__':
   main()
