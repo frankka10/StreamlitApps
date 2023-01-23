@@ -127,7 +127,7 @@ def main():
   st.write("About the acquisition process, they concern the acquisition of these"
            "doping substances, whether you may have an authorization or not.")
   
-  col1, col2 = st.columns(['Class', 'Substance of the chosen class'])
+  col1, col2 = st.columns(2)
   with col1:
     classe = st.selectbox(
     'Select a class among the list :', data['Classe'].unique(), key='option1')
