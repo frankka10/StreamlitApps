@@ -146,22 +146,22 @@ def main():
   
   # Informations about the use of the derivates
   st.subheader('What is the specific information about their use ?')
-  col1, col2, col3 = st.columns(3)
-  with col1:
+  col4, col5, col6 = st.columns(3)
+  with col4:
     classe1 = st.selectbox(
     'Select a class among the list :', data['Classe'].unique(), key='k1')
-  with col2:
+  with col5:
     substance1 = st.selectbox(
     'Select a substance of the chosen class :', data[data['Classe'] == classe1]['Substance'].unique(), key='k2')
-  with col3:
+  with col6:
     derivate = st.selectbox(
     'Select a derivate of the selected substance :', data[(data['Classe'] == classe1) & (data['Susbtance'] == substance1)]['DenomSpe'].unique(), key='k3')
   
-  col1, col2 = st.columns(2)
-  with col1:
+  col7, col8 = st.columns(2)
+  with col7:
     st.write('Complemantary informations about the selected substance or derivate')
     st.write(data[(data['Classe'] == classe1) & (data['Susbtance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires'])
-  with col2:
+  with col8:
     st.write('Other complemantary informations about the selected substance or derivate')
     st.write(data[(data['Classe'] == classe1) & (data['Susbtance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis'])
    
