@@ -155,15 +155,15 @@ def main():
     'Select a substance of the chosen class', data[data['Classe'] == classe1]['Substance'].unique(), key='sub')
   with col6:
     derivate = st.selectbox(
-    'Select a derivate of the substance', data[(data['Classe'] == classe1) & (data['Susbtance'] == substance1)]['DenomSpe'].unique(), key='der')
+    'Select a derivate of the substance', data[(data['Classe'] == classe1) & (data['Substance'] == substance1)]['DenomSpe'].unique(), key='der')
   
   col7, col8 = st.columns(2)
   with col7:
     st.write('Complemantary informations about the selected substance or derivate')
-    st.write(data[(data['Classe'] == classe1) & (data['Susbtance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires'])
+    st.write(data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires'])
   with col8:
     st.write('Other complemantary informations about the selected substance or derivate')
-    st.write(data[(data['Classe'] == classe1) & (data['Susbtance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis'])
+    st.write(data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis'])
    
     
     
