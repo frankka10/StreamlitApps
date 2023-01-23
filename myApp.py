@@ -160,7 +160,7 @@ def main():
   col7, col8 = st.columns(2)
   with col7:
     st.write('Complemantary informations about the selected substance or derivate')
-    st.write(data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires'][0])
+    st.write(data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires'])
   with col8:
     st.write('Other complemantary informations about the selected substance or derivate')
     st.write(data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis'])
