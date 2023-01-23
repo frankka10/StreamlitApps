@@ -98,7 +98,7 @@ def main():
     k2 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10, key='k2')
     df = most_substances_classes(k2)
     fig2, ax = plt.subplots()
-    ax.scatter(df['Classe'], df['Number of Substances'], orientation='horizontal')
+    ax.scatter(df['Number of Substances'], df['Classe'])
     st.pyplot(fig2)
     
   # Proportion of statut 
