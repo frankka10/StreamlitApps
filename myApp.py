@@ -44,6 +44,11 @@ def most_substances_classes(n):
   df = df.sort_values(by='Number of Substances', ascending=False)
   return df.head(n)
 
+def most_derivates_classes(n):
+  df = substances_derivates_per_class()
+  df = df.sort_values(by='Number of DenomSpe', ascending=False)
+  return df.head(n)
+
 def main():
   
   # Display the header
