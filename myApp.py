@@ -133,7 +133,7 @@ def main():
     'Select a class among the list :', data['Classe'].unique(), key='option1')
   with col2:
     substance = st.selectbox(
-    'Select a substance of the chosen class :', data[data['Classe'] == option1]['Substance'].unique(), key='option2')
+    'Select a substance of the chosen class :', data[data['Classe'] == classe]['Substance'].unique(), key='option2')
   
   if substance:
     df2 = path_proportion_per_class(classe, substance)
