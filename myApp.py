@@ -92,13 +92,13 @@ def main():
     k1 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10)
     df = most_substances_classes(k1)
     fig, ax = plt.subplots()
-    ax.stem(df['Classe'], df['Number of Substances'])
+    ax.stem(df['Classe'], df['Number of Substances'], orientation='horizontal')
     st.pyplot(fig)
   with tab2:
     k2 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10)
     df = most_substances_classes(k2)
     fig2, ax = plt.subplots()
-    ax.stem(df['Classe'], df['Number of Substances'])
+    ax.stem(df['Classe'], df['Number of Substances'], orientation='horizontal')
     st.pyplot(fig2)
     
   # Proportion of statut 
