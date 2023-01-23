@@ -163,7 +163,7 @@ def main():
     st.write((data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires']).tolist()[0])
   with col8:
     st.write('Other complemantary informations about the selected substance or derivate')
-    st.write(data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis'])
+    st.write((data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis']).tolist()[0])
    
     
     
