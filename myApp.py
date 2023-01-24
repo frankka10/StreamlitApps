@@ -114,7 +114,7 @@ def main():
   # Proportion of statut 
   st.subheader("What is the proportion of statut of consumption per class?")
   st.write("About the statutes, they concern the consumption of these"
-           "doping substances during and outside competition")
+           " doping substances during and outside competition")
   option = st.selectbox(
     'Select a class among the following ones :', data['Classe'].unique())
   
@@ -124,13 +124,11 @@ def main():
     fig = px.pie(df, values = 'Proportion', names = 'Statut', title = 'Proportion of statut')
     st.plotly_chart(fig)  
     with st.expander("Explanation"):
-      st.write("This figure describes on the same graph the number of substances per class "
-               "and the number of deviations of substances per class found in our dataset")
+      st.write("This pie chart shows the proportion of the statut of consumption of the different classes")
       
-   # Proportion of paths per substance
+  # Proportion of paths per substance
   st.subheader("Proportion of paths consumption per class")
-  st.write("About the acquisition process, they concern the acquisition of these"
-           "doping substances, whether you may have an authorization or not.")
+  st.write("About the paths of consumption, they concern the different ways an athlete can ingest them.")
   
   col1, col2 = st.columns(2)
   with col1:
@@ -146,8 +144,7 @@ def main():
     fig2 = px.pie(df2, values = 'Repartition', names = 'Voie', title = 'Proportion of path consumption ')
     st.plotly_chart(fig2)  
     with st.expander("Explanation"):
-      st.write("This figure describes on the same graph the number of substances per class "
-               "and the number of deviations of substances per class found in our dataset")
+      st.write("This figure describes the repartition of the different paths of consumption of a substance")
   
   # Informations about the use of the derivates
   st.subheader('What is the specific information about their use ?')
@@ -171,6 +168,8 @@ def main():
     st.write('Other complemantary informations about the selected substance or derivate')
     st.write((data[(data['Classe'] == classe1) & (data['Substance'] == substance1) & (data['DenomSpe'] == derivate)]['Informations complémentaires bis']).tolist()[0])
    
+  with st.expander("Explanation"):
+      st.write("You should note that such substances do not have any notice about their consumption")
     
     
     
