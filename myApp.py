@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
+from PIL import Image
 import plotly.express as px
 import matplotlib.pyplot as plt
 import matplotlib
@@ -55,6 +56,8 @@ def main():
   
   with st.sidebar:
     st.title("Welcome to my streamlit")
+    image = Image.open('smiley.jfif')
+    st.image(image)
     st.write("I am Franklin KAMDEM")
     selected_columns = st.multiselect("For any information about this project, do not hesitate to contact me by : ", ['Email', 'LinkedIn', 'Github'], default = 'LinkedIn')
     info = ['frank.kamdem10@gmail.com','https://www.linkedin.com/in/franklin-kamdem/','https://github.com/frankka10/StreamlitApps']
