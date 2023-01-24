@@ -54,7 +54,18 @@ def main():
   # Sidebar
   
   with st.sidebar:
-    st.subheader("Welcome to my streamlit")
+    st.title("Welcome to my streamlit")
+    st.write("I am Franklin KAMDEM")
+    selected_columns = st.multiselect("For any information about this project, do not hesitate to contact me by : ", ['Email', 'LinkedIn', 'Github'], default = 'LinkedIn')
+    info = ['frank.kamdem10@gmail.com','https://www.linkedin.com/in/franklin-kamdem/','https://github.com/frankka10/StreamlitApps']
+    if selected_columns:
+      for i in range(len(selected_columns)):
+        if 'Email' in selected_columns:
+          st.info('{}'.format(info[0]), icon="ℹ️")
+        if 'LinkedIn' in selected_columns:
+          st.info('{}'.format(info[1]), icon="ℹ️")
+        if 'Github' in selected_columns:
+          st.info('{}'.format(info[2]), icon="ℹ️")
   
   # Display the header
   st.title("Doping Substances Analysis")
