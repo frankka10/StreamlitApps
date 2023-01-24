@@ -51,6 +51,11 @@ def most_derivates_classes(n):
 
 def main():
   
+  # Sidebar
+  
+  with st.sidebar:
+    st.subheader("Welcome to my streamlit")
+  
   # Display the header
   st.title("Doping Substances Analysis")
   
