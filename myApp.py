@@ -84,7 +84,7 @@ def main():
              "and the number of deviations of substances per class found in our dataset")
   
   
-  st.subheader("Overview of the quantity of substances and devirates per classes")
+  st.subheader("Another view")
   df = substances_derivates_per_class()
   st.area_chart(df.set_index('Classe'))  
   with st.expander("Explanation"):
@@ -92,6 +92,7 @@ def main():
              "and the number of deviations of substances per class found in our dataset")
   
   # Classes with the n-highest number of substances
+  st.subheader("What are the classes  with the n-highest number of susbtances / derivates ?")
   tab1, tab2 = st.tabs(['K- Classes with the highest number of Substances','K- Classes with the highest number of Derivates'])
   with tab1:
     k1 = st.slider('Choose the number of classes with the highest number of substances you want to display', 0, 20, 10)
@@ -105,9 +106,13 @@ def main():
     fig2, ax = plt.subplots()
     ax.scatter(df['Number of DenomSpe'], df['Classe'])
     st.pyplot(fig2)
+  
+  with st.expander("Explanation"):
+    st.write("These two graphs show the n-classes with the most substances and the most derivatives of substances ")
+    
     
   # Proportion of statut 
-  st.subheader("Proportion of statut")
+  st.subheader("What is the proportion of statut of consumption per class?")
   st.write("About the statutes, they concern the consumption of these"
            "doping substances during and outside competition")
   option = st.selectbox(
